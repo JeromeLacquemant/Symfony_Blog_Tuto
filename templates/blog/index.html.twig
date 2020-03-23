@@ -7,13 +7,12 @@
 <section class="article">
     {% for article in articles %}
         <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 23/03/2020 à 17/00 
+            <h2>{{ article.title }}</h2>
+            <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }}
                 dans la catégorie Politique</div>
                 <div class="content">
-                    <img src="http://placehold.it/350x150" alt="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti officia quibusdam voluptas. Modi, repellendus reiciendis!</p>
-                    <p>Repellat illo enim voluptate explicabo omnis quia ex nam, quasi dicta suscipit! Impedit, error molestias.</p>
+                    <img src="{{ article.image }}" alt="">
+                    {{ article.content | raw }}
                     <a href="{{ path('blog_show')}}" class="btn btn-primary">Lire la suite</a>
                 </div>
         </article>
