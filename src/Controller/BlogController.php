@@ -28,7 +28,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/12, name="blog_show")
+     * @Route("/blog/article/12", name="blog_show")
      */
     public function show()
     {
