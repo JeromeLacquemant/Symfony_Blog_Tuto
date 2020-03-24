@@ -31,6 +31,14 @@ class BlogController extends AbstractController
             'title' => "Bienvenue les amis"
         ]);
     }
+    
+    /**
+     * @Route("/blog/new", name="blog_create")
+     */
+    public function create()
+    {
+        return $this->render('blog/create.html.twig');
+    }
 
     /**
      * @Route("/blog/{id}", name="blog_show")
