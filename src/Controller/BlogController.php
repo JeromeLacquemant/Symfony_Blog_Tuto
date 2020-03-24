@@ -47,6 +47,23 @@ class BlogController extends AbstractController
                         ->add('image')
                         ->getForm();
 
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) //Condition : est-ce que le formulaire a été soumis et surtout est-il valide ?
+        {
+            if(!$article->getId())
+            {
+            $article->setCreatedAt(new \DateTime()); // On ajoute la date directement ici automatiquement
+            }
+
+            $manager->persist($article); // Le manager se prépare à faire persister l'article
+            $manager->flush(); // On balance la requête.
+
+            return $this->redirectToRoute('blog_show', [
+                'id' => $article->getId() //On se redirige vers le nouvel article fraichement créé
+            ]);
+        }
+
         return $this->render('blog/create.html.twig', [
             'formArticle' => $form->createView()
         ]);
