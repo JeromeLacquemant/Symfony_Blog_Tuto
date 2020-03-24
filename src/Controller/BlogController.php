@@ -36,10 +36,18 @@ class BlogController extends AbstractController
     
     /**
      * @Route("/blog/new", name="blog_create")
+     * @Route("/blog/{id}/edit", name="blog_edit")
      */
-    public function create(Request $request, ManagerRegistry $manager)
+    public function form(Article $article = null, Request $request, ManagerRegistry $manager)
     {
-        $article = new Article();
+        if(!$article)
+        {
+            $article = new Article();
+        }
+        //$article = new Article();
+
+        $article    ->setTitle("Titre de l'article")
+                    ->setContent("le contenu de l'article");
 
         $form = $this   ->createFormBuilder($article)
                         ->add('title')
@@ -51,7 +59,10 @@ class BlogController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) //Condition : est-ce que le formulaire a été soumis et surtout est-il valide ?
         {
-            $article->setCreatedAt(new \DateTime()); // On ajoute la date directement ici automatiquement
+            if(!$article->getId())
+            {
+                $article->setCreatedAt(new \DateTime()); // On ajoute la date directement ici automatiquement
+            }
 
             $manager->getManager()->persist($article); // Le manager se prépare à faire persister l'article
             $manager->getManager()->flush(); // On balance la requête.
