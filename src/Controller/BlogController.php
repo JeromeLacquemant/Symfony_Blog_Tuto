@@ -34,10 +34,15 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/article/12", name="blog_show")
+     * @Route("/blog/{id}", name="blog_show")
      */
-    public function show()
+    public function show($id)
     {
-        return $this->render('blog/show.html.twig');
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+        $article = $repo->find($id); // Trouve moi l'article qui a cet identifiant
+
+        return $this->render('blog/show.html.twig', [
+            'article' => $article 
+        ]); //On passe un tableau à twig avec les variables que je veux qu'il utilise
     }
 }
