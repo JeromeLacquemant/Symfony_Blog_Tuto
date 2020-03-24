@@ -8,8 +8,6 @@ use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index(
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class BlogController extends AbstractController
 {
@@ -44,21 +42,9 @@ class BlogController extends AbstractController
         $article = new Article();
 
         $form = $this   ->createFormBuilder($article)
-                        ->add('title', TextType::class, [
-                            'attr' => [
-                                'placeholder' => "Titre de l'article"
-                            ]
-                        ])
-                        ->add('content', TextareaType::class, [
-                            'attr' => [
-                                'placeholder'  => "Contenu de l'article"
-                            ]
-                        ])
-                        ->add('image', TextType::class, [
-                            'attr' => [
-                                'placeholder' => "Image de l'article"
-                            ]
-                        ])
+                        ->add('title')
+                        ->add('content')
+                        ->add('image')
                         ->getForm();
 
         return $this->render('blog/create.html.twig', [
