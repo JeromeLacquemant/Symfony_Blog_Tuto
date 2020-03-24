@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index()
 use App\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class BlogController extends AbstractController
 {
@@ -35,7 +37,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/new", name="blog_create")
      */
-    public function create(Request $request, Objectmanager $manager)
+    public function create(Request $request, ManagerRegistry $manager)
     {
         $article = new Article();
 
@@ -46,7 +48,7 @@ class BlogController extends AbstractController
                         ->getForm();
 
         return $this->render('blog/create.html.twig', [
-            'form' => $form->createView()
+            'formArticle' => $form->createView()
         ]);
     }
 
