@@ -35,9 +35,19 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/new", name="blog_create")
      */
-    public function create()
+    public function create(Request $request, Objectmanager $manager)
     {
-        return $this->render('blog/create.html.twig');
+        $article = new Article();
+
+        $form = $this   ->createFormBuilder($article)
+                        ->add('title')
+                        ->add('content')
+                        ->add('image')
+                        ->getForm();
+
+        return $this->render('blog/create.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
