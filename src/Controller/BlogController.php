@@ -5,16 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index()
+use App\Repository\ArticleRepository;
 
 class BlogController extends AbstractController
 {
     /**
      * @Route("/blog", name="blog")
      */
-    public function index()
+    public function index(ArticleRepository $repo) //Quand Symfony va appeler la fonction index. Il va savoir que la fonction index() a besoin d'une instance de la classe ArticleRepository
     {
-        $repo = $this->getDoctrine()->getRepository(Article::class); // On veut sélectionner les données dans la table 
-
         $articles = $repo->findAll(); //Trouve moi tous les articles
 
         return $this->render('blog/index.html.twig', [
