@@ -46,17 +46,20 @@ class BlogController extends AbstractController
         $form = $this   ->createFormBuilder($article)
                         ->add('title', TextType::class, [
                             'attr' => [
-                                'placeholder' => "Titre de l'article"
+                                'placeholder' => "Titre de l'article",
+                                'class' => 'form-control'
                             ]
                         ])
                         ->add('content', TextareaType::class, [
                             'attr' => [
-                                'placeholder'  => "Contenu de l'article"
+                                'placeholder'  => "Contenu de l'article",
+                                'class' => 'form-control'
                             ]
                         ])
                         ->add('image', TextType::class, [
                             'attr' => [
-                                'placeholder' => "Image de l'article"
+                                'placeholder' => "Image de l'article",
+                                'class' => 'form-control'
                             ]
                         ])
                         ->getForm();
