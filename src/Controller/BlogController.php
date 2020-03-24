@@ -8,6 +8,7 @@ use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index(
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BlogController extends AbstractController
 {
@@ -43,7 +44,7 @@ class BlogController extends AbstractController
 
         $form = $this   ->createFormBuilder($article)
                         ->add('title')
-                        ->add('content')
+                        ->add('content', TextType::class)
                         ->add('image')
                         ->getForm();
 
