@@ -28,7 +28,7 @@ class ArticleFixtures extends Fixture
             {
                 $article = new Article();
 
-                $content .= '<p>' . join($faker->paragraphs(5), '</p><p>') . '</p>';
+                $content = '<p>' . join($faker->paragraphs(5), '</p><p>') . '</p>';
 
                 $article    ->setTitle($faker->sentence())
                             ->setContent($content)
