@@ -12,7 +12,7 @@ class ArticleFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Faker/Factory::create('FR_fr');
+        $faker = \Faker\Factory::create('fr_FR');
 
         // Créer 3 catégories fakées
         for($i = 1; $i <= 3; $i++)
