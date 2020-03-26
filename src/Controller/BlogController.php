@@ -8,7 +8,7 @@ use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index(
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use App\Form\Articletype;
+use App\Form\ArticleType;
 
 class BlogController extends AbstractController
 {
