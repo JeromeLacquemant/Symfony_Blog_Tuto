@@ -31,7 +31,7 @@ class User
      */
     private $password;
 
-    private $confirm_password;
+    //private $confirm_password;
 
     public function getId(): ?int
     {
