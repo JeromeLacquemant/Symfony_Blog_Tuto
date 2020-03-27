@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index()
+use App\Entity\Comment;
+use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use App\Form\ArticleType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Article; //Ne pasoublier d'ajouter ce use pour la fonction index()
 
 class BlogController extends AbstractController
 {
@@ -80,8 +82,13 @@ class BlogController extends AbstractController
      */
     public function show(Article $article)
     {
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+
         return $this->render('blog/show.html.twig', [
-            'article' => $article 
+            'article' => $article,
+            'commentForm' => $form->createView()
         ]); //On passe un tableau à twig avec les variables que je veux qu'il utilise
     }
 }
